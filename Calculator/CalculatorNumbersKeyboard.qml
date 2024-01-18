@@ -6,6 +6,8 @@ Item {
     property int key_width;
     property int key_height;
 
+    signal sendTxt(string button_txt)
+
     Grid {
         id: numberKeys
         columns: 3
@@ -17,6 +19,8 @@ Item {
                 button_text: index + 1
                 width: key_width
                 height: key_height
+
+                onSendText: root.sendTxt(button_text)
             }
         }
     }

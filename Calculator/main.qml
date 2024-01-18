@@ -15,11 +15,22 @@ Window {
         width: 600
 
         height: 100
-        color: "red"
+        color: "#4b5320"
         anchors{
             horizontalCenter: parent.horizontalCenter
             top: parent.top
             topMargin: 20
+        }
+
+        Text{
+            id: monitor_text
+            font.pixelSize: 16
+            anchors{
+                right: calculatorMonitor.right
+                rightMargin: 10
+                bottom: calculatorMonitor.bottom
+                bottomMargin: 10
+            }
         }
     }
 
@@ -64,6 +75,8 @@ Window {
                     verticalCenter: calculatorNumberKeys.verticalCenter
                     verticalCenterOffset: -70
                 }
+
+                onSendTxt: (text_received) => { monitor_text.text += text_received }
             }
 
             CalculatorKeys{
@@ -79,6 +92,8 @@ Window {
                     verticalCenter: calculatorNumberKeys.verticalCenter
                     verticalCenterOffset: 90
                 }
+
+                onSendText: (text_received) => { monitor_text.text += text_received }
             }
         }
 
@@ -113,6 +128,8 @@ Window {
                     top: parent.top
                     topMargin: 15
                 }
+
+                onSendTxt: (text_received) => { monitor_text.text += text_received }
             }
         }
 
@@ -141,6 +158,14 @@ Window {
                     horizontalCenter: parent.horizontalCenter
                     verticalCenter: parent.verticalCenter
                 }
+
+                onSendTxt: (text_received) => {
+                               if(text_received === '='){
+                                   monitor_text.text += text_received
+                               }else{
+                                   monitor_text.text = ''
+                               }
+                           }
             }
         }
     }

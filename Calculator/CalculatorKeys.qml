@@ -7,9 +7,11 @@ Item {
     //Size are determined when defining keyboard components.
     //Hover and Press effect should be applied.
     property alias button_text : buttonText.text
+    signal sendText(string text_button_pressed)
 
     Rectangle{
         id: container
+
 
         border.color: 'black'
         border.width: 2
@@ -43,6 +45,7 @@ Item {
             anchors.fill: container
             hoverEnabled: true
             acceptedButtons: Qt.AllButtons
+            onPressed: root.sendText(button_text);
         }
     }
 }
